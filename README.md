@@ -2,7 +2,7 @@
 
 Projeto de conclusão da disciplina de **Aplicações Web em Camadas**.
 
-O **RateYourAlbums** é uma API REST estruturada na arquitetura MVC que permite aos usuários cadastrar álbuns musicais e registrar suas avaliações, criando uma comunidade de críticos musicais.
+O **RateYourAlbums** é uma API REST estruturada em MVC que gerencia desde o cadastro de usuários e álbuns musicais até o ciclo completo de avaliações (reviews), incluindo autenticação segura via JWT e persistência de dados relacional.
 
 ---
 
