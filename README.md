@@ -40,20 +40,7 @@ git clone https://github.com/SEU-USUARIO/rate-your-albums.git
 npm install
 ```
 
-### 3. Configure o arquivo .env
-
-Crie um arquivo `.env` na raiz do projeto:
-
-```env
-DATABASE_URL="mysql://usuario:senha@localhost:3306/rate_albums_db"
-JWT_SECRET="sua_chave_secreta_aqui"
-```
-
-⚠️ O `.env` não deve ser enviado ao GitHub.
-
----
-
-### 4. Rodar migrações do banco
+### 3. Rodar migrações do banco
 
 ```bash
 npx prisma migrate dev
@@ -61,7 +48,7 @@ npx prisma migrate dev
 
 ---
 
-### 5. Iniciar o servidor
+### 4. Iniciar o servidor
 
 ```bash
 npm run dev
@@ -100,17 +87,3 @@ npm run dev
 * `src/middlewares` → autenticação JWT
 * `src/lib` → Prisma client
 * `prisma/` → schema do banco
-
----
-
-## 📌 Observações
-
-* Necessário MySQL ativo
-* Configurar `.env` corretamente
-* Usar `npm run dev` para desenvolvimento
-
----
-
-## 📚 Licença
-
-Projeto acadêmico para fins educacionais.
