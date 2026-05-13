@@ -39,8 +39,19 @@ git clone https://github.com/SEU-USUARIO/rate-your-albums.git
 ```bash
 npm install
 ```
+### 3. Configure as variáveis de ambiente
 
-### 3. Rodar migrações do banco
+Crie um arquivo .env na raiz do projeto e configure:
+
+```env
+DATABASE_URL="mysql://usuario:senha@localhost:3306/rate_albums_db"
+JWT_SECRET="sua_chave_secreta_aqui"
+```
+
+---
+⚠️ **O .env não deve ser enviado ao GitHub.**
+
+### 4. Rodar migrações do banco
 
 ```bash
 npx prisma migrate dev
@@ -48,7 +59,7 @@ npx prisma migrate dev
 
 ---
 
-### 4. Iniciar o servidor
+### 5. Iniciar o servidor
 
 ```bash
 npm run dev
