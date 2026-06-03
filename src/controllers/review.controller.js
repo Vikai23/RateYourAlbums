@@ -93,4 +93,95 @@ const index = async (req, res) => {
   }
 };
 
-module.exports = { store, index };
+const update = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { score, comment } = req.body;
+    const userId = req.userId;
+
+    const reviewId = parseInt(id);
+    const parsedScore = parseInt(score);
+
+    if (isNaN(reviewId)) {
+      return res.status(400).json({ error: "ID da avaliação inválido" });
+    }
+
+    if (isNaN(parsedScore)) {
+      return res.status(400).json({ error: "Nota inválida" });
+    }
+
+    if (parsedScore < 1 || parsedScore > 5) {
+      return res.status(400).json({
+        error: "A nota deve estar entre 1 e 5 estrelas"
+      });
+    }
+
+    const review = await prisma.review.findUnique({
+      where: { id: reviewId }
+    });
+
+    if (!review) {
+      return res.status(404).json({ error: "Avaliação não encontrada" });
+    }
+
+    if (review.userId !== userId) {
+      return res.status(403).json({
+        error: "Você não tem permissão para editar esta avaliação"
+      });
+    }
+
+    const updatedReview = await prisma.review.update({
+      where: { id: reviewId },
+      data: {
+        score: parsedScore,
+        comment: comment || null
+      }
+    });
+
+    return res.status(200).json({
+      message: "Avaliação atualizada com sucesso",
+      review: updatedReview
+    });
+  } catch (error) {
+    return res.status(500).json({ error: "Erro ao atualizar avaliação" });
+  }
+};
+
+const destroy = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.userId;
+
+    const reviewId = parseInt(id);
+
+    if (isNaN(reviewId)) {
+      return res.status(400).json({ error: "ID da avaliação inválido" });
+    }
+
+    const review = await prisma.review.findUnique({
+      where: { id: reviewId }
+    });
+
+    if (!review) {
+      return res.status(404).json({ error: "Avaliação não encontrada" });
+    }
+
+    if (review.userId !== userId) {
+      return res.status(403).json({
+        error: "Você não tem permissão para deletar esta avaliação"
+      });
+    }
+
+    await prisma.review.delete({
+      where: { id: reviewId }
+    });
+
+    return res.status(200).json({
+      message: "Avaliação deletada com sucesso"
+    });
+  } catch (error) {
+    return res.status(500).json({ error: "Erro ao deletar avaliação" });
+  }
+};
+
+module.exports = { store, index, update, destroy };
