@@ -1,14 +1,23 @@
 {
-  "name": "music-review-api",
+  "name": "rate-your-albums-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API REST para cadastro e avaliação de álbuns musicais",
+  "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "test": "echo \"Nenhum teste configurado\" && exit 0"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "api",
+    "nodejs",
+    "express",
+    "prisma",
+    "mysql",
+    "music",
+    "reviews"
+  ],
+  "author": "Vinícius Sousa",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {

@@ -14,6 +14,9 @@ model User {
   name     String
 
   reviews Review[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Album {
@@ -25,6 +28,9 @@ model Album {
 
   reviews Review[]
   tracks  Track[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Review {
@@ -38,6 +44,9 @@ model Review {
   user  User  @relation(fields: [userId], references: [id])
   album Album @relation(fields: [albumId], references: [id])
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
   @@unique([userId, albumId])
 }
 
@@ -48,4 +57,9 @@ model Track {
 
   albumId Int
   album   Album @relation(fields: [albumId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@unique([albumId, trackNumber])
 }
