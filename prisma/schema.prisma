@@ -17,12 +17,14 @@ model User {
 }
 
 model Album {
-  id     Int    @id @default(autoincrement())
-  title  String
-  artist String
-  genre  String
+  id       Int     @id @default(autoincrement())
+  title    String
+  artist   String
+  genre    String
+  coverUrl String?
 
   reviews Review[]
+  tracks  Track[]
 }
 
 model Review {
@@ -37,4 +39,13 @@ model Review {
   album Album @relation(fields: [albumId], references: [id])
 
   @@unique([userId, albumId])
+}
+
+model Track {
+  id          Int    @id @default(autoincrement())
+  title       String
+  trackNumber Int
+
+  albumId Int
+  album   Album @relation(fields: [albumId], references: [id])
 }
