@@ -10,6 +10,18 @@ const albumRoutes = require('./routes/album.routes');
 const reviewRoutes = require('./routes/review.routes');
 const trackRoutes = require('./routes/track.routes');
 
+app.get('/', (req, res) => {
+  return res.status(200).json({
+    message: 'RateYourAlbums API funcionando',
+    rotas: {
+      auth: '/auth',
+      albums: '/albums',
+      reviews: '/reviews',
+      tracks: '/tracks'
+    }
+  });
+});
+
 app.use('/auth', authRoutes);
 app.use('/albums', albumRoutes);
 app.use('/reviews', reviewRoutes);

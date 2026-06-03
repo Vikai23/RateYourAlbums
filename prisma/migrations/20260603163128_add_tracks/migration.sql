@@ -1,5 +1,5 @@
 -- AlterTable
-ALTER TABLE `album` ADD COLUMN `coverUrl` VARCHAR(191) NULL;
+ALTER TABLE `Album` ADD COLUMN `coverUrl` VARCHAR(191) NULL;
 
 -- CreateTable
 CREATE TABLE `Track` (
